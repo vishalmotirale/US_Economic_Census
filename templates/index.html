@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Census API Search</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Census API Search</h1>
+
+    <div class="form" style="text-align: center;">
+        <form action="/censusapp" method="post">
+            <label for="naics">Enter NAICS Code:</label>
+            <input type="text" name="naics" id="naics" placeholder="e.g. 54" required><br><br>
+
+            <label for="geo">Select a State:</label>
+            <select name="geo" id="geo">
+                <option value="us:*">United States (All)</option>
+                <option value="state:*">All States</option>
+                <option value="state:01">Alabama</option>
+                <option value="state:02">Alaska</option>
+                <option value="state:04">Arizona</option>
+                <option value="state:05">Arkansas</option>
+                <option value="state:06">California</option>
+                <option value="state:08">Colorado</option>
+                <option value="state:09">Connecticut</option>
+                <option value="state:10">Delaware</option>
+                <option value="state:11">District of Columbia</option>
+                <option value="state:12">Florida</option>
+                <option value="state:13">Georgia</option>
+                <option value="state:15">Hawaii</option>
+                <option value="state:16">Idaho</option>
+                <option value="state:17">Illinois</option>
+                <option value="state:18">Indiana</option>
+                <option value="state:19">Iowa</option>
+                <option value="state:20">Kansas</option>
+                <option value="state:21">Kentucky</option>
+                <option value="state:22">Louisiana</option>
+                <option value="state:23">Maine</option>
+                <option value="state:24">Maryland</option>
+                <option value="state:25">Massachusetts</option>
+                <option value="state:26">Michigan</option>
+                <option value="state:27">Minnesota</option>
+                <option value="state:28">Mississippi</option>
+                <option value="state:29">Missouri</option>
+                <option value="state:30">Montana</option>
+                <option value="state:31">Nebraska</option>
+                <option value="state:32">Nevada</option>
+                <option value="state:33">New Hampshire</option>
+                <option value="state:34">New Jersey</option>
+                <option value="state:35">New Mexico</option>
+                <option value="state:36">New York</option>
+                <option value="state:37">North Carolina</option>
+                <option value="state:38">North Dakota</option>
+                <option value="state:39">Ohio</option>
+                <option value="state:40">Oklahoma</option>
+                <option value="state:41">Oregon</option>
+                <option value="state:42">Pennsylvania</option>
+                <option value="state:44">Rhode Island</option>
+                <option value="state:45">South Carolina</option>
+                <option value="state:46">South Dakota</option>
+                <option value="state:47">Tennessee</option>
+                <option value="state:48">Texas</option>
+                <option value="state:49">Utah</option>
+                <option value="state:50">Vermont</option>
+                <option value="state:51">Virginia</option>
+                <option value="state:53">Washington</option>
+                <option value="state:54">West Virginia</option>
+                <option value="state:55">Wisconsin</option>
+                <option value="state:56">Wyoming</option>
+            </select><br><br>
+            <label for="year">Select Year:</label>
+            <select name="year" id="year">
+                <option value="2022">2022</option>
+                <option value="2017">2017</option>
+                <option value="2012">2012</option>
+            </select><br><br>
+
+            <label for="apikey">Enter Your API Key:</label>
+            <input type="text" name="apikey" id="apikey" required><br><br>
+
+            <input type="submit" value="Search">
+        </form>
+    </div>
+</body>
+</html>
