@@ -1,85 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Census API Search</title>
+  <meta charset="UTF-8">
+  <title>Census API Search</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Amazon Ember", Arial, sans-serif;
+      background-color: #f3f3f3;
+    }
+
+    header {
+      background-color: #232f3e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      text-align: center;
+      color: #111;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #111;
+    }
+
+    select, input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    input[type="submit"] {
+      background-color: #ffa41c;
+      color: #111;
+      font-weight: bold;
+      border: none;
+      margin-top: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #ff8f00;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
-    <h1 style="text-align: center;">Census API Search</h1>
 
-    <div class="form" style="text-align: center;">
-        <form action="/censusapp" method="post">
-            <label for="naics">Enter NAICS Code:</label>
-            <input type="text" name="naics" id="naics" placeholder="e.g. 54" required><br><br>
+<header>
+  <h1>Census Data Finder</h1>
+</header>
 
-            <label for="geo">Select a State:</label>
-            <select name="geo" id="geo">
-                <option value="us:*">United States (All)</option>
-                <option value="state:*">All States</option>
-                <option value="state:01">Alabama</option>
-                <option value="state:02">Alaska</option>
-                <option value="state:04">Arizona</option>
-                <option value="state:05">Arkansas</option>
-                <option value="state:06">California</option>
-                <option value="state:08">Colorado</option>
-                <option value="state:09">Connecticut</option>
-                <option value="state:10">Delaware</option>
-                <option value="state:11">District of Columbia</option>
-                <option value="state:12">Florida</option>
-                <option value="state:13">Georgia</option>
-                <option value="state:15">Hawaii</option>
-                <option value="state:16">Idaho</option>
-                <option value="state:17">Illinois</option>
-                <option value="state:18">Indiana</option>
-                <option value="state:19">Iowa</option>
-                <option value="state:20">Kansas</option>
-                <option value="state:21">Kentucky</option>
-                <option value="state:22">Louisiana</option>
-                <option value="state:23">Maine</option>
-                <option value="state:24">Maryland</option>
-                <option value="state:25">Massachusetts</option>
-                <option value="state:26">Michigan</option>
-                <option value="state:27">Minnesota</option>
-                <option value="state:28">Mississippi</option>
-                <option value="state:29">Missouri</option>
-                <option value="state:30">Montana</option>
-                <option value="state:31">Nebraska</option>
-                <option value="state:32">Nevada</option>
-                <option value="state:33">New Hampshire</option>
-                <option value="state:34">New Jersey</option>
-                <option value="state:35">New Mexico</option>
-                <option value="state:36">New York</option>
-                <option value="state:37">North Carolina</option>
-                <option value="state:38">North Dakota</option>
-                <option value="state:39">Ohio</option>
-                <option value="state:40">Oklahoma</option>
-                <option value="state:41">Oregon</option>
-                <option value="state:42">Pennsylvania</option>
-                <option value="state:44">Rhode Island</option>
-                <option value="state:45">South Carolina</option>
-                <option value="state:46">South Dakota</option>
-                <option value="state:47">Tennessee</option>
-                <option value="state:48">Texas</option>
-                <option value="state:49">Utah</option>
-                <option value="state:50">Vermont</option>
-                <option value="state:51">Virginia</option>
-                <option value="state:53">Washington</option>
-                <option value="state:54">West Virginia</option>
-                <option value="state:55">Wisconsin</option>
-                <option value="state:56">Wyoming</option>
-            </select><br><br>
-            <label for="year">Select Year:</label>
-            <select name="year" id="year">
-                <option value="2022">2022</option>
-                <option value="2017">2017</option>
-                <option value="2012">2012</option>
-            </select><br><br>
+<div class="container">
+  <form action="/censusapp" method="POST">
+    <h2>Search Business Census Data</h2>
 
-            <label for="apikey">Enter Your API Key:</label>
-            <input type="text" name="apikey" id="apikey" required><br><br>
+    <label for="naics">Select NAICS Code:</label>
+    <select name="naics" id="naics" required>
+      <option value="11">11 - Agriculture</option>
+      <option value="21">21 - Mining</option>
+      <option value="22">22 - Utilities</option>
+      <option value="23">23 - Construction</option>
+      <option value="31">31-33 - Manufacturing</option>
+      <option value="42">42 - Wholesale Trade</option>
+      <option value="44">44-45 - Retail Trade</option>
+      <option value="48">48-49 - Transportation</option>
+      <option value="51">51 - Information</option>
+      <option value="52">52 - Finance & Insurance</option>
+      <option value="53">53 - Real Estate</option>
+      <option value="54">54 - Professional Services</option>
+      <option value="56">56 - Admin & Waste Services</option>
+      <option value="61">61 - Education</option>
+      <option value="62">62 - Healthcare</option>
+      <option value="71">71 - Arts & Entertainment</option>
+      <option value="72">72 - Accommodation & Food</option>
+      <option value="81">81 - Other Services</option>
+      <option value="92">92 - Public Administration</option>
+    </select>
 
-            <input type="submit" value="Search">
-        </form>
-    </div>
+    <label for="geo">Select a State:</label>
+    <select name="geo" id="geo">
+      <option value="us:*">United States (All)</option>
+      <option value="state:*">All States</option>
+      <option value="state:01">Alabama</option>
+      <option value="state:02">Alaska</option>
+      <option value="state:04">Arizona</option>
+      <option value="state:05">Arkansas</option>
+      <option value="state:06">California</option>
+      <option value="state:08">Colorado</option>
+      <option value="state:09">Connecticut</option>
+      <option value="state:10">Delaware</option>
+      <option value="state:11">District of Columbia</option>
+      <option value="state:12">Florida</option>
+      <option value="state:13">Georgia</option>
+      <option value="state:15">Hawaii</option>
+      <option value="state:16">Idaho</option>
+      <option value="state:17">Illinois</option>
+      <option value="state:18">Indiana</option>
+      <option value="state:19">Iowa</option>
+      <option value="state:20">Kansas</option>
+      <option value="state:21">Kentucky</option>
+      <option value="state:22">Louisiana</option>
+      <option value="state:23">Maine</option>
+      <option value="state:24">Maryland</option>
+      <option value="state:25">Massachusetts</option>
+      <option value="state:26">Michigan</option>
+      <option value="state:27">Minnesota</option>
+      <option value="state:28">Mississippi</option>
+      <option value="state:29">Missouri</option>
+      <option value="state:30">Montana</option>
+      <option value="state:31">Nebraska</option>
+      <option value="state:32">Nevada</option>
+      <option value="state:33">New Hampshire</option>
+      <option value="state:34">New Jersey</option>
+      <option value="state:35">New Mexico</option>
+      <option value="state:36">New York</option>
+      <option value="state:37">North Carolina</option>
+      <option value="state:38">North Dakota</option>
+      <option value="state:39">Ohio</option>
+      <option value="state:40">Oklahoma</option>
+      <option value="state:41">Oregon</option>
+      <option value="state:42">Pennsylvania</option>
+      <option value="state:44">Rhode Island</option>
+      <option value="state:45">South Carolina</option>
+      <option value="state:46">South Dakota</option>
+      <option value="state:47">Tennessee</option>
+      <option value="state:48">Texas</option>
+      <option value="state:49">Utah</option>
+      <option value="state:50">Vermont</option>
+      <option value="state:51">Virginia</option>
+      <option value="state:53">Washington</option>
+      <option value="state:54">West Virginia</option>
+      <option value="state:55">Wisconsin</option>
+      <option value="state:56">Wyoming</option>
+    </select>
+
+    <label for="year">Select Year:</label>
+    <select name="year" id="year">
+      <option value="2022">2022</option>
+      <option value="2017">2017</option>
+      <option value="2012">2012</option>
+    </select>
+
+    <input type="submit" value="Search">
+  </form>
+</div>
+
+
 </body>
 </html>

@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Census API Result</title>
-    <style>
-        table {
-            width: 95%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
-        th, td {
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-        th {
-            background-color: #f8f8f8;
-        }
-        h2, h3 {
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Census Results</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f3f3f3; }
+    header { background: #232f3e; color: #fff; padding: 20px; text-align: center; }
+    .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    h2 { text-align: center; margin-bottom: 25px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+    th { background-color: #ffa41c; color: #000; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    .btn-back { display: block; text-align: center; margin-top: 30px; }
+    .btn-back a { background-color: #ffa41c; color: black; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+    .btn-back a:hover { background-color: #ff8f00; }
+  </style>
 </head>
 <body>
-    <h2>Census API Result</h2>
-    <h3>Year: {{ year }}</h3> <!-- New line to show selected year -->
 
+<header><h1>Census Results</h1></header>
+
+<div class="container">
+  <h2>Business Data for Year {{ year }}</h2>
+
+  {% if values %}
     <table>
-        <thead>
-            <tr>
-                {% for col in header %}
-                    <th>{{ col }}</th>
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in values %}
-                <tr>
-                    {% for item in row %}
-                        <td>{{ item }}</td>
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-        </tbody>
+      <tr>
+        {% for col in header %}
+          <th>{{ col }}</th>
+        {% endfor %}
+      </tr>
+      {% for row in values %}
+        <tr>
+          {% for cell in row %}
+            <td>{{ cell }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
     </table>
+  {% else %}
+    <p style="text-align:center; font-weight: bold;">No data found for the selected options.</p>
+  {% endif %}
+
+  <div class="btn-back">
+    <a href="/">← Back to Search</a>
+  </div>
+</div>
+
 </body>
 </html>

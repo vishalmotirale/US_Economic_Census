@@ -1,11 +1,14 @@
 from flask import Flask, request, render_template
 import requests
+import os
 
 app = Flask(__name__)
 
 @app.route('/')
 def homepage():
     return render_template("index.html")
+
+API_KEY = os.environ.get("CENSUS_API_KEY")
 
 @app.route('/censusapp', methods=['POST'])
 def get_censusdata():
@@ -17,7 +20,7 @@ def get_censusdata():
         'get': f'{naics_var},{naics_var}_LABEL,EMP,ESTAB,NAME',
         naics_var: request.form.get('naics'),
         'for': request.form.get('geo'),
-        'key': request.form.get('apikey')
+        'key': API_KEY
     }
 
     response = requests.get(url, params=param)
@@ -29,4 +32,4 @@ def get_censusdata():
     return render_template("result.html", header=headers, values=values, year=year)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5002, debug=True)
+    app.run(host='0.0.0.0', debug=True)
